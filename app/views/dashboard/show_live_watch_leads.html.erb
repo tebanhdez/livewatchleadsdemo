@@ -1,0 +1,88 @@
+<script type="text/javascript">
+
+$(function () {
+        $('#chartContainer').highcharts({
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Live Watch Leads Demo'
+            },
+            xAxis: {
+                categories: <%= raw ("#{@dates}") %>
+            },
+            yAxis: {
+                min: -300,
+                tickInterval: 10,
+                title: {
+                    text: 'Live watch leads'
+                },
+                stackLabels: {
+                    enabled: true,
+                    style: {
+                        fontWeight: 'bold',
+                        color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                    }
+                }
+            },
+            legend: {
+                align: 'right',
+                x: -70,
+                verticalAlign: 'top',
+                y: 20,
+                floating: true,
+                backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColorSolid) || 'white',
+                borderColor: '#CCC',
+                borderWidth: 1,
+                shadow: false
+            },
+            plotOptions: {
+                column: {
+                    stacking: 'normal',
+                    dataLabels: {
+                        enabled: true,
+                        color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+                    }
+                }
+            },
+            series: [ <%=raw @data.join(",") %> ]
+        });
+    });
+
+$(function () {
+        $('#linearChartContainer').highcharts({
+            title: {
+                text: 'Leads per date',
+                x: -20 //center
+            },
+            xAxis: {
+                categories: <%= raw ("#{@dates}") %>
+            },
+            yAxis: {
+                title: {
+                    text: 'Leads'
+                },
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }]
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+                borderWidth: 0
+            },
+            series: [{
+                name: '',
+                data: <%= @leads_per_date%>
+            }]
+        });
+    });
+
+</script>
+<h1>Dashboard</h1>
+<div id="chartContainer" style = "height: 800px">
+</div>
+<div id="linearChartContainer"></div>

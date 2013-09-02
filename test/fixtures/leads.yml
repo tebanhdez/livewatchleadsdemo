@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  lead_date: 2013-08-30
+  lead_source: MyString
+  sales_rep: MyString
+  status: MyString
+  url: MyString
+
+two:
+  lead_date: 2013-08-30
+  lead_source: MyString
+  sales_rep: MyString
+  status: MyString
+  url: MyString
